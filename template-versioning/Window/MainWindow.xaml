@@ -11,7 +11,7 @@
         <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding QuestionLists}"
                   SelectedItem="{Binding SelectedQuestionList, Mode=TwoWay}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="80" Header="Number" Binding="{Binding Number}" />
+                <DataGridTextColumn Width="80" Header="Id" Binding="{Binding Number}" />
                 <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description, Mode=TwoWay}" />
                 <DataGridTextColumn Width="100" Header="Version" Binding="{Binding Version}" />
             </DataGrid.Columns>

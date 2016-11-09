@@ -21,15 +21,15 @@ namespace template_versioning.ViewModel
 
         public QuestionViewModel(Entities context) : base(context)
         {
-            Question = new Question {Number = NextNumber, Version = 1};
+            Question = new Question {Version = 1};
         }
 
-        public int Number
+        public int Id
         {
-            get { return Question.Number; }
+            get { return Question.Id; }
             set
             {
-                Question.Number = value;
+                Question.Id = value;
                 RaisePropertyChanged();
             }
         }
@@ -44,7 +44,7 @@ namespace template_versioning.ViewModel
             }
         }
 
-        public decimal Version
+        public int Version
         {
             get { return Question.Version; }
             set
@@ -67,7 +67,7 @@ namespace template_versioning.ViewModel
             var newQuestion = new Question
             {
                 Description = Question.Description,
-                Number = Question.Number,
+                Id = Question.Id,
                 Version = Question.Version + 1
             };
             Context.Entry(Question).Reload();
@@ -81,7 +81,6 @@ namespace template_versioning.ViewModel
             var newQuestion = new Question
             {
                 Description = Question.Description,
-                Number = NextNumber,
                 Version = 1
             };
             Description = (string) Context.Entry(Question).OriginalValues["Description"];
@@ -96,6 +95,11 @@ namespace template_versioning.ViewModel
             Context.SaveChanges();
         }
 
-        private int NextNumber => Context.Questions.Max(q => q.Number) + 1;
+        public void Disable()
+        {
+            Question.IsActive = false;
+            Context.Entry(Question).State = EntityState.Modified;
+            Context.SaveChanges();
+        }
     }
 }

@@ -26,12 +26,12 @@ namespace template_versioning.ViewModel
             }
         }
 
-        public int Number
+        public int Id
         {
-            get { return QuestionList.Number; }
+            get { return QuestionList.Id; }
             set
             {
-                QuestionList.Number = value;
+                QuestionList.Id = value;
                 RaisePropertyChanged();
             }
         }
@@ -42,16 +42,6 @@ namespace template_versioning.ViewModel
             set
             {
                 QuestionList.IsTemplate = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public decimal Version
-        {
-            get { return QuestionList.Version; }
-            set
-            {
-                QuestionList.Version = value;
                 RaisePropertyChanged();
             }
         }

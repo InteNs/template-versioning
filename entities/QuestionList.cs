@@ -21,8 +21,6 @@ namespace entities
         }
     
         public int Id { get; set; }
-        public decimal Version { get; set; }
-        public int Number { get; set; }
         public string Description { get; set; }
         public bool IsTemplate { get; set; }
     

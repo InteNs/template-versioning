@@ -14,9 +14,9 @@ namespace entities
     
     public partial class QuestionItem
     {
-        public int Id { get; set; }
         public Nullable<int> AnswerId { get; set; }
         public int QuestionId { get; set; }
+        public int QuestionVersion { get; set; }
         public int QuestionListId { get; set; }
     
         public virtual Answer Answer { get; set; }

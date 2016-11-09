@@ -17,15 +17,18 @@ namespace template_versioning.ViewModel
         public ICommand UpdateQuestionCommand { get; set; }
         public ICommand DuplicateQuestionCommand { get; set; }
         public ICommand CreateQuestionCommand { get; set; }
+        public ICommand DisableQuestionCommand { get; set; }
 
         public QuestionsViewModel(Entities context) : base(context)
         {
-            UpdateQuestionCommand = new RelayCommand(UpdateQuestion);
-            DuplicateQuestionCommand = new RelayCommand(DuplicateQuestion);
+            UpdateQuestionCommand = new RelayCommand(UpdateQuestion, CanSaveQuestion);
+            DuplicateQuestionCommand = new RelayCommand(DuplicateQuestion, CanSaveQuestion);
             CreateQuestionCommand = new RelayCommand(CreateQuestion);
+            DisableQuestionCommand = new RelayCommand(DisableQuestion);
+
             var questions = from q in context.Questions
                 where !(from qq in context.Questions
-                    where qq.Number == q.Number && qq.Version > q.Version
+                    where qq.Id == q.Id && qq.Version > q.Version
                     select qq).Any()
                 select q;
 
@@ -40,11 +43,22 @@ namespace template_versioning.ViewModel
             Questions.Remove(SelectedQuestion);
         }
 
+        private void DisableQuestion()
+        {
+            SelectedQuestion.Disable();
+            Questions.Remove(SelectedQuestion);
+        }
+
         private void DuplicateQuestion()
         {
             var newQuestion = SelectedQuestion.Duplicate();
             if (newQuestion == null) return;
             Questions.Add(newQuestion);
+        }
+
+        private bool CanSaveQuestion()
+        {
+            return SelectedQuestion?.Description?.Replace(" ", "").Length > 0;
         }
 
         private void CreateQuestion()

@@ -10,5 +10,7 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-INSERT INTO Question (Number, Version, Description) VALUES (1, 1, 'Dit was de eerster vraag');
-INSERT INTO Question (Number, Version, Description) VALUES (1, 2, 'Dit was de eerste vraag (zonder typo)');
+delete from QuestionItem;
+delete from Answer;
+delete from QuestionList;
+delete from Question;

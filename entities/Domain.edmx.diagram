@@ -5,14 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ad1fba5d8a1045f3bdfe25eaa01d38f2" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.C__RefactorLog" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Answer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.QuestionItem" Width="1.5" PointX="6.625" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.QuestionList" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <AssociationConnector Association="Model.FK_QuestionItem_Answer" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_QuestionItem_Question" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK_QuestionItem_QuestionList" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Model.Answer" Width="1.5" PointX="3.5" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="3.5" PointY="8.625" />
+        <EntityTypeShape EntityType="Model.QuestionItem" Width="1.5" PointX="6.75" PointY="8.375" />
+        <EntityTypeShape EntityType="Model.QuestionList" Width="1.5" PointX="3.5" PointY="11.375" />
+        <AssociationConnector Association="Model.FK_QuestionItem_Answer" />
+        <AssociationConnector Association="Model.FK_QuestionItem_Question" />
+        <AssociationConnector Association="Model.FK_QuestionItem_QuestionList" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
