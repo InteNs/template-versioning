@@ -54,6 +54,9 @@
     <Compile Include="Answer.cs">
       <DependentUpon>Domain.tt</DependentUpon>
     </Compile>
+    <Compile Include="C__RefactorLog.cs">
+      <DependentUpon>Domain.tt</DependentUpon>
+    </Compile>
     <Compile Include="Domain.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

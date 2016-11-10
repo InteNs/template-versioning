@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Diagnostics;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using entities;
-using GalaSoft.MvvmLight.CommandWpf;
 
 namespace template_versioning.ViewModel
 {
@@ -21,7 +14,11 @@ namespace template_versioning.ViewModel
 
         public QuestionViewModel(Entities context) : base(context)
         {
-            Question = new Question {Version = 1};
+            Question = new Question
+            {
+                Version = 1,
+                Id = NextId
+            };
         }
 
         public int Id
@@ -70,7 +67,7 @@ namespace template_versioning.ViewModel
                 Id = Question.Id,
                 Version = Question.Version + 1
             };
-            Context.Entry(Question).Reload();
+            this.Reload();
             Context.Questions.Add(newQuestion);
             Context.SaveChanges();
             return new QuestionViewModel(Context, newQuestion);
@@ -81,19 +78,27 @@ namespace template_versioning.ViewModel
             var newQuestion = new Question
             {
                 Description = Question.Description,
+                Id = NextId,
                 Version = 1
             };
-            Description = (string) Context.Entry(Question).OriginalValues["Description"];
+            this.Reload();
             Context.Questions.Add(newQuestion);
             Context.SaveChanges();
             return new QuestionViewModel(Context, newQuestion);
         }
 
+        public void Reload()
+        {
+            Description = (string)Context.Entry(Question).OriginalValues["Description"];
+        }
+
         public void Create()
         {
-            Context.Questions.Add(Question);
+            Context.Entry(Question).State = EntityState.Added;
             Context.SaveChanges();
         }
+
+        private int NextId => Context.Questions.Any() ? Context.Questions.Max(q => q.Id) + 1 : 1;
 
         public void Disable()
         {

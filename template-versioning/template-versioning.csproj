@@ -85,26 +85,38 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\NavViewModel.cs" />
     <Compile Include="ViewModel\QuestionsViewModel.cs" />
     <Compile Include="ViewModel\QuestionListsViewModel.cs" />
     <Compile Include="ViewModel\QuestionListViewModel.cs" />
+    <Compile Include="ViewModel\QuestionItemViewModel.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Window\QuestionListsWindow.xaml.cs">
+      <DependentUpon>QuestionListsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window\QuestionListWindow.xaml.cs">
+      <DependentUpon>QuestionListWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window\QuestionsWindow.xaml.cs">
       <DependentUpon>QuestionsWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Window\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Window\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Page Include="Window\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\QuestionListsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window\QuestionListWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window\QuestionsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

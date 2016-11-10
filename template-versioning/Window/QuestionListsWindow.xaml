@@ -1,0 +1,26 @@
+﻿<Window x:Class="template_versioning.Window.QuestionListsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:template_versioning.Window"
+        mc:Ignorable="d"
+        Title="QuestionListsWindow" Height="300" Width="300"
+        DataContext="{Binding QuestionLists, Source={StaticResource Locator}}">
+    <DockPanel>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding Templates}"
+                  SelectedItem="{Binding SelectedTemplate, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="80" IsReadOnly="True" Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description, Mode=TwoWay}" />
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button FontSize="10" Command="{ Binding DataContext.OpenQuestionListCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">QuestionItems</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+</Window>

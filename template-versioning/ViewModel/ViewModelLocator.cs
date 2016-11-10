@@ -32,9 +32,11 @@ namespace template_versioning.ViewModel
             SimpleIoc.Default.Register<QuestionListViewModel>();
             SimpleIoc.Default.Register<QuestionListsViewModel>();
             SimpleIoc.Default.Register<QuestionsViewModel>();
+            SimpleIoc.Default.Register<NavViewModel>();
         }
 
-        public Entities DbContext => ServiceLocator.Current.GetInstance<Entities>();
+        public NavViewModel Main => ServiceLocator.Current.GetInstance<NavViewModel>();
+        public Entities DbContext => ServiceLocator.Current.GetInstance<Entities>(); 
         public QuestionListsViewModel QuestionLists => ServiceLocator.Current.GetInstance<QuestionListsViewModel>();
         public QuestionListViewModel QuestionList => QuestionLists.SelectedQuestionList;
         public QuestionsViewModel Questions => ServiceLocator.Current.GetInstance<QuestionsViewModel>();

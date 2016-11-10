@@ -14,3 +14,11 @@ delete from QuestionItem;
 delete from Answer;
 delete from QuestionList;
 delete from Question;
+
+insert into Question (Id, Version, Description, IsActive) VALUES (1, 1, 'Hoeveel autos stonden er?', 1);
+insert into Question (Id, Version, Description, IsActive) VALUES (1, 2, 'Hoeveel Autos staan geparkeerd?', 1);
+insert into Question (Id, Version, Description, IsActive) VALUES (1, 3, 'Hoeveel autos staan geparkeerd?', 1);
+insert into Question (Id, Version, Description, IsActive) VALUES (2, 1, 'Hoeveel autos staan fout geparkeerd?', 1);
+insert into Question (Id, Version, Description, IsActive) VALUES (3, 1, 'Is de garage netjes?', 1);
+
+insert into QuestionList (IsTemplate, Description) VALUES (1, 'tel lijst');

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Question]
 (
-	[Id] INT NOT NULL IDENTITY , 
+	[Id] INT NOT NULL, 
     [Version] INT NOT NULL , 
     [Description] VARCHAR(MAX) NOT NULL, 
     

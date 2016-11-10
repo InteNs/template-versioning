@@ -6,22 +6,8 @@
         xmlns:local="clr-namespace:template_versioning"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
-        DataContext="{Binding QuestionLists, Source={StaticResource Locator}}">
-    <StackPanel>
-        <DataGrid AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding QuestionLists}"
-                  SelectedItem="{Binding SelectedQuestionList, Mode=TwoWay}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="80" Header="Id" Binding="{Binding Number}" />
-                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description, Mode=TwoWay}" />
-                <DataGridTextColumn Width="100" Header="Version" Binding="{Binding Version}" />
-            </DataGrid.Columns>
-        </DataGrid>
-    </StackPanel>
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <DockPanel>
+        <Button Command="{Binding OpenWindowsCommand}"> Open windows</Button>
+    </DockPanel>
 </Window>
-
-
-
-
-
-
-

@@ -4,34 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="QuestionsWindow" Height="500" Width="600"
+        Title="QuestionsWindow" Height="500" Width="700"
         DataContext="{Binding Questions, Source={StaticResource Locator}}">
     <DockPanel>
         <Button DockPanel.Dock="Bottom" Height="30" Margin="5,0,5,5" Command="{Binding CreateQuestionCommand}">New Question</Button>
-        <DataGrid VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  AutoGenerateColumns="False" ItemsSource="{Binding Questions}" VerticalScrollBarVisibility="Visible"
+        <DataGrid CanUserDeleteRows="False" CanUserAddRows="False" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  AutoGenerateColumns="False" ItemsSource="{Binding Questions}" VerticalScrollBarVisibility="Visible"
                   SelectedItem="{Binding SelectedQuestion, Mode=TwoWay, NotifyOnSourceUpdated=True}" Margin="5">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="true" Width="50" Header="#" Binding="{Binding Id}" />
                 <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 <DataGridTextColumn IsReadOnly="True" Width="50" Header="Version" Binding="{Binding Version}" />
-                <DataGridTemplateColumn Width="50">
+                <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button FontSize="10" Command="{ Binding DataContext.UpdateQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Save</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button FontSize="10" Command="{ Binding DataContext.DuplicateQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Save as</Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="50">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button FontSize="10" Command="{ Binding DataContext.DisableQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Disable</Button>
+                            <StackPanel Orientation="Horizontal">
+                                <Button FontSize="10" Width="50" Padding="1" CommandParameter="{Binding}" Command="{ Binding DataContext.UpdateQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Save</Button>
+                                <Button FontSize="10" Width="50" Padding="1" CommandParameter="{Binding}" Command="{ Binding DataContext.DuplicateQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Save as</Button>
+                                <Button FontSize="10" Width="50" Padding="1" CommandParameter="{Binding}" Command="{ Binding DataContext.DisableQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Disable</Button>
+                                <Button FontSize="10" Width="50" Padding="1" CommandParameter="{Binding}" Command="{ Binding DataContext.ReloadQuestionCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}">Reset</Button>
+                            </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
