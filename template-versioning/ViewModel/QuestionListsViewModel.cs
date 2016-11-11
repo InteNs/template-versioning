@@ -19,7 +19,7 @@ namespace template_versioning.ViewModel
         public QuestionListViewModel SelectedTemplate { get; set; }
         public ICommand OpenQuestionListCommand { get; set; }
 
-        public QuestionListsViewModel(Entities context, QuestionsViewModel questions) : base(context)
+        public QuestionListsViewModel(Entities context, QuestionsViewModel q) : base(context)
         {
             OpenQuestionListCommand = new RelayCommand(OpenQuestionListWindow, CanOpenQuestionListWindow);
 
@@ -29,7 +29,7 @@ namespace template_versioning.ViewModel
                     .Include(ql => ql.QuestionItems.Select(qi => qi.Question))
                     .Include(ql => ql.QuestionItems.Select(qi => qi.Answer))
                     .ToList()
-                    .Select(ql => new QuestionListViewModel(Context, ql, questions))
+                    .Select(ql => new QuestionListViewModel(Context, ql, q.Questions))
                     .ToList()
             );
             Templates = new ObservableCollection<QuestionListViewModel>(
@@ -39,14 +39,14 @@ namespace template_versioning.ViewModel
                     .Include(ql => ql.QuestionItems.Select(qi => qi.Question))
                     
                     .ToList()
-                    .Select(ql => new QuestionListViewModel(Context, ql, questions))
+                    .Select(ql => new QuestionListViewModel(Context, ql, q.Questions))
                     .ToList()
             );
         }
 
         private void OpenQuestionListWindow()
         {
-           if(_questionListWindow == null) _questionListWindow = new QuestionListWindow();
+           _questionListWindow = new QuestionListWindow();
            _questionListWindow.Show();
         }
 

@@ -3,21 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:template_versioning.Window"
         mc:Ignorable="d"
         Title="QuestionListWindow" Height="300" Width="300"
         DataContext="{Binding QuestionList, Source={StaticResource Locator}}">
     <DockPanel>
-        <Button DockPanel.Dock="Bottom" Height="30" Margin="5,0,5,5" Command="{Binding AddQuestionCommand}">Add Question</Button>
+        <DockPanel DockPanel.Dock="Bottom">
+            <Button DockPanel.Dock="Right" Height="50" Margin="5,0,5,5" Command="{Binding AddQuestionCommand}">Add Question</Button>
+            <ComboBox Margin="5,0,5,5" Height="50" ItemsSource="{Binding Path=Questions}" DisplayMemberPath="Description" SelectedItem="{Binding QuestionToAdd, Mode=TwoWay}" ></ComboBox>
+        </DockPanel>
         <DataGrid CanUserDeleteRows="False" CanUserAddRows="False" VerticalAlignment="Stretch"
-                  HorizontalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding QuestionItems}"
-                  VerticalScrollBarVisibility="Visible"
+                  HorizontalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding QuestionItems}" SelectedItem="{Binding SelectedQuestionItem, Mode=TwoWay}"
+                  VerticalScrollBarVisibility="Visible" IsReadOnly="True"
                   Margin="5">
             <DataGrid.Columns>
-                <DataGridTextColumn IsReadOnly="true" Width="50" Header="#" Binding="{Binding QuestionId}" />
+                <DataGridTextColumn Width="50" Header="#" Binding="{Binding QuestionId}" />
                 <DataGridTextColumn Width="*" Header="Description"
-                                    Binding="{Binding QuestionDescription, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                <DataGridTextColumn IsReadOnly="True" Width="50" Header="Version" Binding="{Binding QuestionVersion}" />
+                                    Binding="{Binding QuestionDescription}" />
+                <DataGridTextColumn Width="50" Header="Version" Binding="{Binding QuestionVersion}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -16,18 +16,20 @@ namespace template_versioning.ViewModel
     {
         public QuestionList QuestionList { get; }
 
-        public QuestionItemViewModel SelectedQuestionItem { get; set; }
+        public QuestionViewModel QuestionToAdd { get; set; }
 
-        private readonly QuestionsViewModel _questions;
+        public ObservableCollection<QuestionViewModel> Questions { get; set; }
+        public QuestionItemViewModel SelectedQuestionItem { get; set; }
         public ObservableCollection<QuestionItemViewModel> QuestionItems { get; set; }
-        public ICommand RemoveQuestionCommand => SelectedQuestionItem?.DestroyCommand;
+        public ICommand RemoveQuestionCommand { get; set; }
         public ICommand AddQuestionCommand { get; set; }
 
-        public QuestionListViewModel(Entities context, QuestionList questionList, QuestionsViewModel questions) : base(context)
+        public QuestionListViewModel(Entities context, QuestionList questionList, ObservableCollection<QuestionViewModel> questions ) : base(context)
         {
             AddQuestionCommand = new RelayCommand(AddQuestion);
+            RemoveQuestionCommand = new RelayCommand(RemoveQuestion);
             QuestionList = questionList;
-            _questions = questions;
+            Questions = questions;
             QuestionItems = new ObservableCollection<QuestionItemViewModel>(QuestionList.QuestionItems.Select(qi => new QuestionItemViewModel(Context, qi)));
         }
 
@@ -61,12 +63,19 @@ namespace template_versioning.ViewModel
             }
         }
 
+        private void RemoveQuestion()
+        {
+            SelectedQuestionItem.Destroy();
+            QuestionItems.Remove(SelectedQuestionItem);
+        }
         private void AddQuestion()
         {
-            var newItem = new QuestionItem { QuestionList = QuestionList, Question = _questions.SelectedQuestion.Question};
-            Context.QuestionItems.Add(newItem);
-            QuestionItems.Add(new QuestionItemViewModel(Context, newItem));
+            if (QuestionToAdd == null) return;
+            if (QuestionItems.Select(q => q.QuestionId).Contains(QuestionToAdd.Id)) return;
+            var newQ = new QuestionItem {Question = QuestionToAdd.Question, QuestionList = QuestionList};
+            Context.QuestionItems.Add(newQ);
             Context.SaveChanges();
+            QuestionItems.Add(new QuestionItemViewModel(Context, newQ));
         }
     }
 }

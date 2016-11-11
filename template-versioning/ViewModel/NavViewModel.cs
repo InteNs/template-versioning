@@ -16,11 +16,16 @@ namespace template_versioning.ViewModel
         private QuestionsWindow _questionsWindow;
         private bool _hasOpened;
         public ICommand OpenWindowsCommand { get; set; }
+        public ICommand OpenQuestionsCommand { get; set; }
+
+        public ICommand OpenListsCommand { get; set; }
 
         public NavViewModel()
         {
             _hasOpened = false;
             OpenWindowsCommand = new RelayCommand(OpenWindows, CanOpenWindows);
+            OpenQuestionsCommand = new RelayCommand(OpenQuestionsWindow);
+            OpenListsCommand = new RelayCommand(OpenQuestionListsWindow);
         }
 
         private void OpenWindows()

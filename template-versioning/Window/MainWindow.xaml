@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         DataContext="{Binding Main, Source={StaticResource Locator}}">
-    <DockPanel>
-        <Button Command="{Binding OpenWindowsCommand}"> Open windows</Button>
-    </DockPanel>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button Width="200" Height="200" Margin="20" Command="{Binding OpenQuestionsCommand}">Open Questions</Button>
+        <Button Width="200" Height="200" Margin="20" Command="{Binding OpenListsCommand}">Open Lists</Button>
+    </StackPanel>
 </Window>

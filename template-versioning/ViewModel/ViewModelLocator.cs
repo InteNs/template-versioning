@@ -38,7 +38,7 @@ namespace template_versioning.ViewModel
         public NavViewModel Main => ServiceLocator.Current.GetInstance<NavViewModel>();
         public Entities DbContext => ServiceLocator.Current.GetInstance<Entities>(); 
         public QuestionListsViewModel QuestionLists => ServiceLocator.Current.GetInstance<QuestionListsViewModel>();
-        public QuestionListViewModel QuestionList => QuestionLists.SelectedQuestionList;
+        public QuestionListViewModel QuestionList => QuestionLists.SelectedTemplate;
         public QuestionsViewModel Questions => ServiceLocator.Current.GetInstance<QuestionsViewModel>();
 
         public static void Cleanup()
